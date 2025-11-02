@@ -2,7 +2,7 @@ package com.example.coffee_journal_backend.models;
 
 import java.util.Objects;
 
-public class CoffeeShops {
+public class CoffeeShop {
 
     private static int nextId = 1;
 
@@ -12,7 +12,7 @@ public class CoffeeShops {
     private String shopPhone;
     private String shopHours;
 
-    public CoffeeShops(String shopName, String shopAddress, String shopPhone, String shopHours) {
+    public CoffeeShop(String shopName, String shopAddress, String shopPhone, String shopHours) {
         this.id = nextId;
         this.shopName = shopName;
         this.shopAddress = shopAddress;
@@ -68,7 +68,7 @@ public class CoffeeShops {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        CoffeeShops coffeeshop = (CoffeeShops) o;
+        CoffeeShop coffeeshop = (CoffeeShop) o;
         return id == coffeeshop.id;
     }
 
