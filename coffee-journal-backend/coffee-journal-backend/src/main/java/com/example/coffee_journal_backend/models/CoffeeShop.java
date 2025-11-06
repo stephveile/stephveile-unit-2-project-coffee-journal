@@ -59,9 +59,9 @@ public class CoffeeShop {
 
     @Override
     public String toString() {
-        return shopName + '\'' +
-                "Address = " + shopAddress + '\'' +
-                "Phone = " + shopPhone + '\'' +
+        return shopName + '\n' +
+                "Address = " + shopAddress + '\n' +
+                "Phone = " + shopPhone + '\n' +
                 "Hours = " + shopHours;
     }
 
