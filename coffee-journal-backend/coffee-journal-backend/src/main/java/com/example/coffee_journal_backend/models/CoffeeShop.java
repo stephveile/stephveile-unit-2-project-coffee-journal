@@ -1,24 +1,31 @@
 package com.example.coffee_journal_backend.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.util.Objects;
 
+@Entity
 public class CoffeeShop {
 
-    private static int nextId = 1;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    private final int id;
     private String shopName;
     private String shopAddress;
     private String shopPhone;
     private String shopHours;
 
+    public CoffeeShop() {};
+
     public CoffeeShop(String shopName, String shopAddress, String shopPhone, String shopHours) {
-        this.id = nextId;
         this.shopName = shopName;
         this.shopAddress = shopAddress;
         this.shopPhone = shopPhone;
         this.shopHours = shopHours;
-        nextId++;
     }
 
     public int getId() {
