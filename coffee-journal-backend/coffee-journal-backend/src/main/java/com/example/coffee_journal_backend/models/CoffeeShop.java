@@ -1,12 +1,12 @@
 package com.example.coffee_journal_backend.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -31,6 +31,10 @@ public class CoffeeShop {
     @NotBlank(message="Hours are required.")
     @Size(min=5, max=25, message="Hours must be 5-25 characters long")
     private String shopHours;
+
+    @OneToMany(mappedBy = "entry")
+    @JsonBackReference
+    private final List<CoffeeShop> coffeeShops = new ArrayList<>();
 
     public CoffeeShop() {};
 
