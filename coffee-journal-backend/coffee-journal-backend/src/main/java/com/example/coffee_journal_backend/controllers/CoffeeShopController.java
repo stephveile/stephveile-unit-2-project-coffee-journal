@@ -2,11 +2,14 @@ package com.example.coffee_journal_backend.controllers;
 
 import com.example.coffee_journal_backend.models.CoffeeShop;
 import com.example.coffee_journal_backend.repositories.CoffeeShopRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import java.awt.*;
 import java.util.List;
@@ -29,10 +32,11 @@ public class CoffeeShopController {
     // Retrieve specific coffee shop
     // GET request to http://localhost:8080/api/coffeeshops/details/{shopId}
     @GetMapping(value="/details/{shopId}", produces=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getCoffeeShopById(@PathVariable int shopId) {
+    public ResponseEntity<?> getCoffeeShopById(@PathVariable int shopId) throws NoResourceFoundException {
         CoffeeShop coffeeShop = coffeeShopRepository.findById(shopId).orElse(null);
         if (coffeeShop == null) {
-            return new ResponseEntity<>("Coffee shop not found.", HttpStatus.NOT_FOUND);
+            String path = "/api/coffeeshops/details/" + shopId;
+            throw new NoResourceFoundException(HttpMethod.GET, path);
         } else {
             return new ResponseEntity<>(coffeeShop, HttpStatus.OK);
         }
@@ -41,7 +45,7 @@ public class CoffeeShopController {
     // Save new coffee shop
     // POST request to http://localhost:8080/api/coffeeshops/add
     @PostMapping(value="/add", consumes=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> addNewCoffeeShop(@RequestBody CoffeeShop coffeeShop) {
+    public ResponseEntity<?> addNewCoffeeShop(@Valid @RequestBody CoffeeShop coffeeShop) {
         coffeeShopRepository.save(coffeeShop);
         return new ResponseEntity<>(coffeeShop, HttpStatus.CREATED);
     }
@@ -49,10 +53,11 @@ public class CoffeeShopController {
     // Delete existing coffee shop
     // DELETE request to http://localhost:8080/api/coffeeshops/delete/{shopId}
     @DeleteMapping(value="/delete/{shopId}")
-    public ResponseEntity<?> deleteCoffeeShop(@PathVariable int shopId) {
+    public ResponseEntity<?> deleteCoffeeShop(@PathVariable int shopId) throws NoResourceFoundException {
         CoffeeShop coffeeShop = coffeeShopRepository.findById(shopId).orElse(null);
         if (coffeeShop == null) {
-            return new ResponseEntity<>("Coffee shop not found.", HttpStatus.NOT_FOUND);
+            String path = "/api/coffeeshops/delete/" + shopId;
+            throw new NoResourceFoundException(HttpMethod.DELETE, path);
         } else {
             coffeeShopRepository.deleteById(shopId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
