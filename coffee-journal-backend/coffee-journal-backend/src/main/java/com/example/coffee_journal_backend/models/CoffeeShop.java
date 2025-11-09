@@ -2,8 +2,6 @@ package com.example.coffee_journal_backend.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,25 +14,17 @@ public class CoffeeShop {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank(message="Name is required.")
-    @Size(min=5, max=50, message="Name must be 5-50 characters long.")
     private String shopName;
 
-    @NotBlank(message="Address is required.")
-    @Size(min=5, max=100, message="Address must be 5-100 characters long")
     private String shopAddress;
 
-    @NotBlank(message="Phone number is required.")
-    @Size(min=12, max=12, message="Phone number must be XXX-XXX-XXXX format")
     private String shopPhone;
 
-    @NotBlank(message="Hours are required.")
-    @Size(min=5, max=25, message="Hours must be 5-25 characters long")
     private String shopHours;
 
-    @OneToMany(mappedBy = "entry")
+    @OneToMany(mappedBy = "coffeeShop")
     @JsonBackReference
-    private final List<CoffeeShop> coffeeShops = new ArrayList<>();
+    private final List<Entry> entries = new ArrayList<>();
 
     public CoffeeShop() {};
 

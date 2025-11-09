@@ -1,5 +1,6 @@
 package com.example.coffee_journal_backend.controllers;
 
+import com.example.coffee_journal_backend.dto.CoffeeShopDTO;
 import com.example.coffee_journal_backend.models.CoffeeShop;
 import com.example.coffee_journal_backend.repositories.CoffeeShopRepository;
 import jakarta.validation.Valid;
@@ -45,7 +46,8 @@ public class CoffeeShopController {
     // Save new coffee shop
     // POST request to http://localhost:8080/api/coffeeshops/add
     @PostMapping(value="/add", consumes=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> addNewCoffeeShop(@Valid @RequestBody CoffeeShop coffeeShop) {
+    public ResponseEntity<?> addNewCoffeeShop(@Valid @RequestBody CoffeeShopDTO coffeeShopData) {
+        CoffeeShop coffeeShop = new CoffeeShop(coffeeShopData.getShopName(), coffeeShopData.getShopAddress(), coffeeShopData.getShopPhone(), coffeeShopData.getShopHours());
         coffeeShopRepository.save(coffeeShop);
         return new ResponseEntity<>(coffeeShop, HttpStatus.CREATED);
     }

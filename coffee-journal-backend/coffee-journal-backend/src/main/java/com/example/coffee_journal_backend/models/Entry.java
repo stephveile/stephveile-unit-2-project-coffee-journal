@@ -101,6 +101,9 @@ public class Entry {
     @Override
     public String toString() {
         return "New Journal Entry: " + '\n' +
-
+                "Coffee Shop: " + coffeeShop.getShopName() + '\n' +
+                "Drink Order: " + drinkOrder + '\n' +
+                "Rating: " + rating + '\n' +
+                "Review: " + review;
     }
 }
