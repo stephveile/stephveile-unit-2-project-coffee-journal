@@ -23,7 +23,7 @@ public class CoffeeShopController {
 
     // Retrieve all coffee shops
     // GET request to http://localhost:8080/api/coffeeshops
-    @GetMapping("")
+    @GetMapping(value="", produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAllCoffeeShops() {
         List<CoffeeShop> allCoffeeShops = coffeeShopRepository.findAll();
         return new ResponseEntity<>(allCoffeeShops, HttpStatus.OK);
