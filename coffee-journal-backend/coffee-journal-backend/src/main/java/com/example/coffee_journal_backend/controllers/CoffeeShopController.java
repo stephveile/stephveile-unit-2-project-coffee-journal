@@ -31,12 +31,12 @@ public class CoffeeShopController {
     }
 
     // Retrieve specific coffee shop
-    // GET request to http://localhost:8080/api/coffeeshops/details/{shopId}
-    @GetMapping(value="/details/{shopId}", produces=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getCoffeeShopById(@PathVariable int shopId) throws NoResourceFoundException {
-        CoffeeShop coffeeShop = coffeeShopRepository.findById(shopId).orElse(null);
+    // GET request to http://localhost:8080/api/coffeeshops/details/{id}
+    @GetMapping(value="/details/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getCoffeeShopById(@PathVariable int id) throws NoResourceFoundException {
+        CoffeeShop coffeeShop = coffeeShopRepository.findById(id).orElse(null);
         if (coffeeShop == null) {
-            String path = "/api/coffeeshops/details/" + shopId;
+            String path = "/api/coffeeshops/details/" + id;
             throw new NoResourceFoundException(HttpMethod.GET, path);
         } else {
             return new ResponseEntity<>(coffeeShop, HttpStatus.OK);
@@ -53,15 +53,15 @@ public class CoffeeShopController {
     }
 
     // Delete existing coffee shop
-    // DELETE request to http://localhost:8080/api/coffeeshops/delete/{shopId}
-    @DeleteMapping(value="/delete/{shopId}")
-    public ResponseEntity<?> deleteCoffeeShop(@PathVariable int shopId) throws NoResourceFoundException {
-        CoffeeShop coffeeShop = coffeeShopRepository.findById(shopId).orElse(null);
+    // DELETE request to http://localhost:8080/api/coffeeshops/delete/{id}
+    @DeleteMapping(value="/delete/{id}")
+    public ResponseEntity<?> deleteCoffeeShop(@PathVariable int id) throws NoResourceFoundException {
+        CoffeeShop coffeeShop = coffeeShopRepository.findById(id).orElse(null);
         if (coffeeShop == null) {
-            String path = "/api/coffeeshops/delete/" + shopId;
+            String path = "/api/coffeeshops/delete/" + id;
             throw new NoResourceFoundException(HttpMethod.DELETE, path);
         } else {
-            coffeeShopRepository.deleteById(shopId);
+            coffeeShopRepository.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }

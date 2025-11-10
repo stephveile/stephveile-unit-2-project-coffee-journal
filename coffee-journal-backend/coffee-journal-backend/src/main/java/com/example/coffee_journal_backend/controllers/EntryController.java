@@ -29,11 +29,11 @@ public class EntryController {
         return new ResponseEntity<>(allEntries, HttpStatus.OK);
     }
 
-    @GetMapping(value="/details/{entryId}", produces=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getEntryById(@PathVariable int entryId) throws NoResourceFoundException {
-        Entry entry = entryRepository.findById(entryId).orElse(null);
+    @GetMapping(value="/details/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getEntryById(@PathVariable int id) throws NoResourceFoundException {
+        Entry entry = entryRepository.findById(id).orElse(null);
         if (entry == null) {
-            String path = "/entries/details/" + entryId;
+            String path = "/entries/details/" + id;
             throw new NoResourceFoundException(HttpMethod.GET, path);
         } else {
             return new ResponseEntity<>(entry, HttpStatus.OK);

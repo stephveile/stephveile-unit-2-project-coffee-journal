@@ -9,14 +9,14 @@ public class EntryDTO {
     @Size(min=5, max=50, message="Drink order must be 5-50 characters long.")
     private String drinkOrder;
 
-//    @NotBlank(message="Rating is required.")
+    @NotBlank(message="Rating is required.")
     private int rating;
 
     @NotBlank(message="Review is required.")
     @Size(max=100, message="Name must be 100 characters or less.")
     private String review;
 
-//    @NotBlank(message="Recommendation choice is required.")
+    @NotBlank(message="Recommendation choice is required.")
     private boolean wouldRecommend;
 
     @NotBlank(message="Visit date is required.")
