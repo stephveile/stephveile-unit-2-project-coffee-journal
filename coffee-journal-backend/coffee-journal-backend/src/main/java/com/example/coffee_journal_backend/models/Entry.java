@@ -3,7 +3,6 @@ package com.example.coffee_journal_backend.models;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
 @Entity
 public class Entry {
@@ -17,25 +16,17 @@ public class Entry {
     @JsonManagedReference
     private CoffeeShop coffeeShop;
 
-    @NotBlank(message="Drink order is required.")
-    @Size(min=5, max=50, message="Drink order must be 5-50 characters long.")
     private String drinkOrder;
 
-    @NotBlank(message="Rating is required.")
     private int rating;
 
-    @NotBlank(message="Review is required.")
-    @Size(max=100, message="Name must be 100 characters or less.")
     private String review;
 
-    @NotBlank(message="Recommendation choice is required.")
     private boolean wouldRecommend;
 
-    @NotBlank(message="Visit date is required.")
-    @Size(min=10, max=10, message="Visit date must be in MM/DD/YYYY format.")
     private String visitDate;
 
-    public Entry() {};
+    public Entry(String drinkOrder, int rating, String review, boolean wouldRecommend, String visitDate) {};
 
     public Entry(CoffeeShop coffeeShop, String drinkOrder, int rating, String review, boolean wouldRecommend, String visitDate) {
         this.coffeeShop = coffeeShop;
