@@ -29,7 +29,7 @@ public class Entry {
     @JsonManagedReference
     private User user;
 
-    public Entry(String drinkOrder, int rating, String review, boolean wouldRecommend, String visitDate, User user) {};
+    public Entry(String drinkOrder, int rating, String review, boolean wouldRecommend, String visitDate) {};
 
     public Entry(CoffeeShop coffeeShop, String drinkOrder, int rating, String review, boolean wouldRecommend, String visitDate, User user) {
         this.coffeeShop = coffeeShop;

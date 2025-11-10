@@ -26,6 +26,10 @@ public class User {
     @JsonBackReference
     private final List<Entry> entries = new ArrayList<>();
 
+    @OneToMany(mappedBy= "user")
+    @JsonBackReference
+    private final List<AddRequest> addRequests = new ArrayList<>();
+
     public User() {};
 
     public User(String userName, String userEmail, String userPassword, String userCity) {
