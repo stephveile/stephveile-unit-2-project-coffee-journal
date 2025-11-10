@@ -3,8 +3,10 @@ package com.example.coffee_journal_backend.controllers;
 import com.example.coffee_journal_backend.dto.EntryDTO;
 import com.example.coffee_journal_backend.models.CoffeeShop;
 import com.example.coffee_journal_backend.models.Entry;
+import com.example.coffee_journal_backend.models.User;
 import com.example.coffee_journal_backend.repositories.CoffeeShopRepository;
 import com.example.coffee_journal_backend.repositories.EntryRepository;
+import com.example.coffee_journal_backend.repositories.UserRepository;
 import jakarta.validation.Valid;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class EntryController {
     @Autowired
     CoffeeShopRepository coffeeShopRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     @GetMapping(value="", produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAllEntries() {
         List allEntries = (List) entryRepository.findAll();
@@ -47,7 +52,8 @@ public class EntryController {
     @PostMapping(value="/add", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addNewEntry(@Valid @RequestBody EntryDTO entryData) {
         CoffeeShop coffeeShop = coffeeShopRepository.findById(entryData.getShopId()).orElse(null);
-        Entry entry = new Entry(coffeeShop, entryData.getDrinkOrder(), entryData.getRating(), entryData.getReview(), entryData.isWouldRecommend(), entryData.getVisitDate());
+        User user = userRepository.findById(entryData.getUserId()).orElse(null);
+        Entry entry = new Entry(coffeeShop, entryData.getDrinkOrder(), entryData.getRating(), entryData.getReview(), entryData.isWouldRecommend(), entryData.getVisitDate(), user);
         entryRepository.save(entry);
         return new ResponseEntity<>(entry, HttpStatus.CREATED);
     }

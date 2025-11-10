@@ -27,13 +27,17 @@ public class EntryDTO {
     @Size(min=10, max=10, message="Visit date must be in MM/DD/YYYY format.")
     private String visitDate;
 
-    public EntryDTO(int shopId, String drinkOrder, int rating, String review, boolean wouldRecommend, String visitDate) {
+    @NotNull(message="User is required.")
+    private int userId;
+
+    public EntryDTO(int shopId, String drinkOrder, int rating, String review, boolean wouldRecommend, String visitDate, int userId) {
         this.shopId = shopId;
         this.drinkOrder = drinkOrder;
         this.rating = rating;
         this.review = review;
         this.wouldRecommend = wouldRecommend;
         this.visitDate = visitDate;
+        this.userId = userId;
     }
 
     public int getShopId() {
@@ -82,5 +86,13 @@ public class EntryDTO {
 
     public void setVisitDate(String visitDate) {
         this.visitDate = visitDate;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

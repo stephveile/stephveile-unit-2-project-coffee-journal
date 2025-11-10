@@ -25,15 +25,20 @@ public class Entry {
 
     private String visitDate;
 
-    public Entry(String drinkOrder, int rating, String review, boolean wouldRecommend, String visitDate) {};
+    @ManyToOne
+    @JsonManagedReference
+    private User user;
 
-    public Entry(CoffeeShop coffeeShop, String drinkOrder, int rating, String review, boolean wouldRecommend, String visitDate) {
+    public Entry(String drinkOrder, int rating, String review, boolean wouldRecommend, String visitDate, User user) {};
+
+    public Entry(CoffeeShop coffeeShop, String drinkOrder, int rating, String review, boolean wouldRecommend, String visitDate, User user) {
         this.coffeeShop = coffeeShop;
         this.drinkOrder = drinkOrder;
         this.rating = rating;
         this.review = review;
         this.wouldRecommend = wouldRecommend;
         this.visitDate = visitDate;
+        this.user = user;
     }
 
     public int getId() {
@@ -86,6 +91,14 @@ public class Entry {
 
     public void setVisitDate(String visitDate) {
         this.visitDate = visitDate;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

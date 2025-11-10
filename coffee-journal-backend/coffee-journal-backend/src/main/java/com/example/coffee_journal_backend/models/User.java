@@ -1,12 +1,10 @@
 package com.example.coffee_journal_backend.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -16,21 +14,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank(message="Username is required.")
-    @Size(min=10, max=25, message="Username must be 10-25 characters long.")
     private String userName;
 
-    @NotBlank(message="Email is required.")
-    @Size(min=7, max=50, message="Email must be 7-50 characters long.")
     private String userEmail;
 
-    @NotBlank(message="Password is required.")
-    @Size(min=10, message="Password must be a minimum of 10 characters long.")
     private String userPassword;
 
-    @NotBlank(message="City is required.")
-    @Size(min=2, max=20, message="City must be 2-20 characters long.")
     private String userCity;
+
+    @OneToMany(mappedBy= "user")
+    @JsonBackReference
+    private final List<Entry> entries = new ArrayList<>();
 
     public User() {};
 
