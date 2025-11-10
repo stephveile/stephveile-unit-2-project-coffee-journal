@@ -12,7 +12,6 @@ public class Entry {
     private int id;
 
     @ManyToOne
-    @NotBlank(message="Coffee shop is required.")
     @JsonManagedReference
     private CoffeeShop coffeeShop;
 

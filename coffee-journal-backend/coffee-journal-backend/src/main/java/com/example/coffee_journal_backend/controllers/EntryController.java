@@ -3,6 +3,7 @@ package com.example.coffee_journal_backend.controllers;
 import com.example.coffee_journal_backend.dto.EntryDTO;
 import com.example.coffee_journal_backend.models.CoffeeShop;
 import com.example.coffee_journal_backend.models.Entry;
+import com.example.coffee_journal_backend.repositories.CoffeeShopRepository;
 import com.example.coffee_journal_backend.repositories.EntryRepository;
 import jakarta.validation.Valid;
 import org.apache.coyote.Response;
@@ -23,6 +24,9 @@ public class EntryController {
     @Autowired
     EntryRepository entryRepository;
 
+    @Autowired
+    CoffeeShopRepository coffeeShopRepository;
+
     @GetMapping(value="", produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAllEntries() {
         List allEntries = (List) entryRepository.findAll();
@@ -42,7 +46,8 @@ public class EntryController {
 
     @PostMapping(value="/add", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addNewEntry(@Valid @RequestBody EntryDTO entryData) {
-        Entry entry = new Entry(entryData.getDrinkOrder(), entryData.getRating(), entryData.getReview(), entryData.isWouldRecommend(), entryData.getVisitDate());
+        CoffeeShop coffeeShop = coffeeShopRepository.findById(entryData.getShopId()).orElse(null);
+        Entry entry = new Entry(coffeeShop, entryData.getDrinkOrder(), entryData.getRating(), entryData.getReview(), entryData.isWouldRecommend(), entryData.getVisitDate());
         entryRepository.save(entry);
         return new ResponseEntity<>(entry, HttpStatus.CREATED);
     }
