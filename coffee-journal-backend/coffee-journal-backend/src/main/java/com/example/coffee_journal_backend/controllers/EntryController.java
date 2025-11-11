@@ -8,7 +8,6 @@ import com.example.coffee_journal_backend.repositories.CoffeeShopRepository;
 import com.example.coffee_journal_backend.repositories.EntryRepository;
 import com.example.coffee_journal_backend.repositories.UserRepository;
 import jakarta.validation.Valid;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -56,6 +55,18 @@ public class EntryController {
         Entry entry = new Entry(coffeeShop, entryData.getDrinkOrder(), entryData.getRating(), entryData.getReview(), entryData.isWouldRecommend(), entryData.getVisitDate(), user);
         entryRepository.save(entry);
         return new ResponseEntity<>(entry, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping(value="/delete/{id}")
+    public ResponseEntity<?> deleteEntry(@PathVariable int id) throws NoResourceFoundException {
+        Entry entry = entryRepository.findById(id).orElse(null);
+        if (entry == null) {
+            String path = "/api/entries/delete/" + id;
+            throw new NoResourceFoundException(HttpMethod.DELETE, path);
+        } else {
+            entryRepository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
     }
 
 }

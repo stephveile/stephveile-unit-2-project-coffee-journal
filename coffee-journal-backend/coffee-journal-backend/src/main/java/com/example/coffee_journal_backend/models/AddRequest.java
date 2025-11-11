@@ -1,6 +1,5 @@
 package com.example.coffee_journal_backend.models;
 
-import com.example.coffee_journal_backend.dto.AddRequestDTO;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 

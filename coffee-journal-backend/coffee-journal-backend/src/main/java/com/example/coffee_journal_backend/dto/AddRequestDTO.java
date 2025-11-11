@@ -1,7 +1,5 @@
 package com.example.coffee_journal_backend.dto;
 
-import com.example.coffee_journal_backend.models.User;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 

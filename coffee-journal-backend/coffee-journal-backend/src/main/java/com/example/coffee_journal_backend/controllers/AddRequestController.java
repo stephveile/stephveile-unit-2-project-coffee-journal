@@ -17,7 +17,7 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 import java.awt.*;
 
 @RestController
-@RequestMapping("/addrequest")
+@RequestMapping("/requests")
 public class AddRequestController {
 
     @Autowired
@@ -36,7 +36,7 @@ public class AddRequestController {
     public ResponseEntity<?> getRequestById(@PathVariable int id) throws NoResourceFoundException {
         AddRequest addRequest = addRequestRepository.findById(id).orElse(null);
         if (addRequest == null) {
-            String path = "/addrequest/details/" + id;
+            String path = "/requests/details/" + id;
             throw new NoResourceFoundException(HttpMethod.GET, path);
         } else {
             return new ResponseEntity<>(addRequest, HttpStatus.OK);
@@ -49,5 +49,17 @@ public class AddRequestController {
         AddRequest addRequest = new AddRequest(user, requestData.getNewCity(), requestData.getNewShopName());
         addRequestRepository.save(addRequest);
         return new ResponseEntity<>(addRequest, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping(value="/delete/{id}")
+    public ResponseEntity<?> deleteRequest(@PathVariable int id) throws NoResourceFoundException {
+        AddRequest addRequest = addRequestRepository.findById(id).orElse(null);
+        if (addRequest == null) {
+            String path = "/requests/delete/" + id;
+            throw new NoResourceFoundException(HttpMethod.DELETE, path);
+        } else {
+            addRequestRepository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
     }
 }
