@@ -1,0 +1,20 @@
+[
+    {
+        "userName": "coffeeFan99",
+        "userEmail": "coffee@email.com",
+        "userPassword": "abcde12345",
+        "userCity": "Saint Louis"
+    },
+    {
+        "userName": "LizzieGirl2025",
+        "userEmail": "lizzie@email.com",
+        "userPassword": "iamlizziedog",
+        "userCity": "Saint Louis"
+    },
+    {
+        "userName": "ArthurBurrito09",
+        "userEmail": "arthur@email.com",
+        "userPassword": "password00",
+        "userCity": "Saint Louis"
+    }
+]
