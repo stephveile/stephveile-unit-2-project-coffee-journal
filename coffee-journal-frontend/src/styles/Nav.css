@@ -1,0 +1,48 @@
+.nav {
+    width: 100%;
+    height: 100px;
+    position: fixed;
+    top: 0;
+    background-image: linear-gradient(to left, rgb(226, 195, 151), white);
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    color: rgb(62, 10, 10);
+}
+
+.nav .left {
+    display: flex;
+    flex: 50%;
+    padding-left: 20px;
+    font-size: 20px;
+}
+
+.nav .left h1 {
+    padding-top: 9px;
+}
+
+.nav .right {
+    display: flex;
+    flex-direction: column;
+    padding-right: 50px;
+    padding-top: 15px;
+}
+
+.nav a {
+    color: rgb(62, 10, 10);
+    text-decoration-thickness: 2px;
+    text-decoration-line: none;
+    text-align: right;
+    font-weight: bold;
+}
+
+.nav img {
+    width: 100px;
+    height: auto;
+}
+
+@media only screen and (max-width: 650px) {
+    .nav .left h1 {
+        display: none;
+    }
+}

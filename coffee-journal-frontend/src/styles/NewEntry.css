@@ -1,0 +1,75 @@
+* {
+    box-sizing: border-box;
+}
+
+.newEntry {
+    height: 100dvh;
+    min-height: auto;
+    max-height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin-top: 100px;
+}
+
+.newEntry:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.leftCol, .rightCol {
+    float: left;
+    width: 50%;
+    padding: 20px 20px 60px;
+}
+
+.leftCard, .rightCard {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    background-color: black;
+    border-color: black;
+    border-radius: 20px;
+    color: white;
+    min-width: 380px;
+}
+
+@media screen and (max-width: 850px) {
+    .leftCol, .rightCol {
+        width: 100%;
+        display: block;
+    }
+}
+
+.entryForm {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+textarea {
+    resize: inherit;
+}
+
+input, textarea {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    font-family: "Montserrat", sans-serif;
+    font-size: medium;
+}
+
+.formButtons {
+    padding: 5px;
+    text-align: center;
+}
+
+.submit, .reset {
+    font-size: large;
+    font-weight: bold;
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    font-family: "Montserrat", sans-serif;
+    font-size: medium;
+}
