@@ -16,8 +16,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
-import java.awt.*;
+import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/entries")
 public class EntryController {
@@ -33,7 +34,7 @@ public class EntryController {
 
     @GetMapping(value="", produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAllEntries() {
-        List allEntries = (List) entryRepository.findAll();
+        List<Entry> allEntries = entryRepository.findAll();
         return new ResponseEntity<>(allEntries, HttpStatus.OK);
     }
 
@@ -69,4 +70,27 @@ public class EntryController {
         }
     }
 
+    @PutMapping(value="/update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> updateEntry(@PathVariable int id, @Valid @RequestBody EntryDTO entryData) throws NoResourceFoundException {
+        Entry existingEntry = entryRepository.findById(id).orElse(null);
+        if (existingEntry == null) {
+            String path = "/entries/update/" + id;
+            throw new NoResourceFoundException(HttpMethod.PUT, path);
+        }
+
+        CoffeeShop coffeeShop = coffeeShopRepository.findById(entryData.getShopId()).orElse(null);
+        User user = userRepository.findById(entryData.getUserId()).orElse(null);
+
+        existingEntry.setCoffeeShop(coffeeShop);
+        existingEntry.setDrinkOrder(entryData.getDrinkOrder());
+        existingEntry.setRating(entryData.getRating());
+        existingEntry.setReview(entryData.getReview());
+        existingEntry.setWouldRecommend(entryData.isWouldRecommend());
+        existingEntry.setVisitDate(entryData.getVisitDate());
+        existingEntry.setUser(user);
+
+        entryRepository.save(existingEntry);
+
+        return new ResponseEntity<>(existingEntry, HttpStatus.OK);
+    }
 }

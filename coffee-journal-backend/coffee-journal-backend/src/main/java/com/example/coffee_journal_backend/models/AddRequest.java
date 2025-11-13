@@ -18,7 +18,12 @@ public class AddRequest {
 
     private String newShopName;
 
-    public AddRequest(String newCity, String newShopName) {};
+    public AddRequest() {}
+
+    public AddRequest(String newCity, String newShopName) {
+        this.newCity = newCity;
+        this.newShopName = newShopName;
+    }
 
     public AddRequest(User user, String newCity, String newShopName) {
         this.user = user;

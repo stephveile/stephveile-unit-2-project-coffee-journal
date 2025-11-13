@@ -14,8 +14,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
-import java.awt.*;
+import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/requests")
 public class AddRequestController {
@@ -28,7 +29,7 @@ public class AddRequestController {
 
     @GetMapping(value="/all", produces= MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAllRequests() {
-        List allRequests = (List) addRequestRepository.findAll();
+        List<AddRequest> allRequests = addRequestRepository.findAll();
         return new ResponseEntity<>(allRequests, HttpStatus.OK);
     }
 

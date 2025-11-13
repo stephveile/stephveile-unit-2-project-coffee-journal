@@ -20,7 +20,7 @@ public class EntryDTO {
     @Size(max=100, message="Name must be 100 characters or less.")
     private String review;
 
-    @NotNull(message="Recommendation choice is required.")
+//    @NotNull(message="Recommendation choice is required.")
     private boolean wouldRecommend;
 
     @NotBlank(message="Visit date is required.")
