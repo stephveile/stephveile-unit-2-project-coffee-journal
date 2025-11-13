@@ -55,8 +55,8 @@ const Journal = () => {
                                 I gave it {entry.rating}/5 stars. {entry.review}
                                 <br /><br />
                             </p>
-                            <button onClick={() => handleUpdate(entry.id)}>Update</button>
-                            <button onClick={() => handleDelete(entry.id)}>Delete</button>
+                            <button className="button" onClick={() => handleUpdate(entry.id)}>Update</button>
+                            <button className="button" onClick={() => handleDelete(entry.id)}>Delete</button>
                             <hr />
                         </div>
                     ))

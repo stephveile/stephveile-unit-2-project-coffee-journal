@@ -34,7 +34,7 @@
     animation-duration: 5s;
 }
 
-button {
+.button {
     font-size: large;
     font-weight: bold;
     width: 100px;
