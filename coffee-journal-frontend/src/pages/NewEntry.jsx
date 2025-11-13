@@ -6,18 +6,19 @@ import {useState} from 'react';
 const NewEntry = () => {
 
     // Initialize states for each of the form entries
-    const [date, setDate] = useState("");
-    const [name, setName] = useState("");
-    const [order, setOrder] = useState("");
+    const [visitDate, setVisitDate] = useState("");
+    const [shopName, setShopName] = useState("");
+    const [drinkOrder, setDrinkOrder] = useState("");
     const [rating, setRating] = useState("");
     const [review, setReview] = useState("");
+    const [wouldRecommend, setWouldRecommend] = useState("");
 
     // Function to save the data to session storage after clicking the submit button
     const handleSubmit = (event) => {
         // Prevent the form from clearing right away
         event.preventDefault();
         // Set up the object to store the new form data
-        const newEntry = {date, name, order, rating, review};
+        const newEntry = {visitDate, shopName, drinkOrder, rating, review};
         // Check for existing stored form data or start with an empty array
         const storedEntries = JSON.parse(sessionStorage.getItem("entries") || "[]");
         // Add the new form data to the existing (or to the empty array)
@@ -34,10 +35,11 @@ const NewEntry = () => {
     // Function for the reset button
     const handleReset = () => {
         setDate("");
-        setName("");
-        setOrder("");
+        setShopName("");
+        setDrinkOrder("");
         setRating("");
         setReview("");
+        setWouldRecommend("");
     };
 
     // Return that prints the HTML and calls the event handler functions
@@ -51,17 +53,17 @@ const NewEntry = () => {
                     <h2>Create a new journal entry</h2>
                     <form className="entryForm" onSubmit={handleSubmit}>
                         <label htmlFor="date"><strong>Date*: </strong></label>
-                        <input type="date" id="date" name="date" value={date} onChange={(event) => setDate(event.target.value)} required />
+                        <input type="date" id="date" name="date" value={visitDate} onChange={(event) => setVisitDate(event.target.value)} required />
                         <br/>
-                        <label htmlFor="name"><strong>Coffee Shop*: </strong></label>
-                        <input type="text" id="name" name="name" value={name} onChange={(event) => setName(event.target.value)} required />
+                        <label htmlFor="shopName"><strong>Coffee Shop*: </strong></label>
+                        <input type="text" id="shopName" name="shopName" value={shopName} onChange={(event) => setShopName(event.target.value)} required />
                         <br/>
-                        <label htmlFor="order"><strong>Order*: </strong></label>
-                        <input type="text" id="order" name="order" value={order} onChange={(event) => setOrder(event.target.value)} required />
+                        <label htmlFor="drinkOrder"><strong>Drink Order*: </strong></label>
+                        <input type="text" id="drinkOrder" name="drinkOrder" value={drinkOrder} onChange={(event) => setDrinkOrder(event.target.value)} required />
                         <br/>
                         <label><strong>Rating: </strong>
                             <input type="radio" id="rating1" name="rating" value="1" onChange={(event) => setRating(event.target.value)} />
-                            <label htmlFor="rating1" >1</label>
+                            <label htmlFor="rating1">1</label>
                             <input type="radio" id="rating2" name="rating" value="2" onChange={(event) => setRating(event.target.value)} />
                             <label htmlFor="rating2">2</label>
                             <input type="radio" id="rating3" name="rating" value="3" onChange={(event) => setRating(event.target.value)} />
@@ -74,6 +76,9 @@ const NewEntry = () => {
                         <br/>
                         <label htmlFor="review"><strong>Review: </strong></label>
                             <textarea id="review" name="review" value={review} onChange={(event) => setReview(event.target.value)} />
+                        <br/>
+                        <label htmlFor="recommend"><strong>Would Recommend: </strong></label>
+                            <input type="checkbox" name="recommend" value={wouldRecommend} onChange={(event) => setWouldRecommend(event.target.value)} />
                         <br/><br/>
                         <div className="formButtons">
                             <input type="submit" className="submit" />
@@ -85,11 +90,12 @@ const NewEntry = () => {
             <div className="rightCol">
                 <div className="rightCard">
                     <h2>Current journal entry preview</h2>
-                    <p><strong>Date:</strong> {date}</p>
-                    <p><strong>Coffee Shop:</strong> {name}</p>
-                    <p><strong>Order:</strong> {order}</p>
+                    <p><strong>Date:</strong> {visitDate}</p>
+                    <p><strong>Coffee Shop:</strong> {shopName}</p>
+                    <p><strong>Drink Order:</strong> {drinkOrder}</p>
                     <p><strong>Rating:</strong> {rating || ("No rating")} / 5</p>
                     <p><strong>Review:</strong> {review || ("No review")}</p>
+                    <p><strong>Would Recommend:</strong> {wouldRecommend}</p>
                 </div>
             </div>
         </div>

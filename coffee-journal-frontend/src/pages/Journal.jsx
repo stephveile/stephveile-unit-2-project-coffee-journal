@@ -27,9 +27,9 @@ const Journal = () => {
             <div className="entries">
                 {entries.map((entry, index) => (
                 <p key={index}>
-                    <strong>~~~~ {entry.name} ~ {entry.date} ~~~~</strong>
+                    <strong>~~~~ {entry.shopName} ~ {entry.visitDate} ~~~~</strong>
                     <br/><br/>
-                    I went to {entry.name} on {entry.date} and ordered a {entry.order}.
+                    I went to {entry.shopName} on {entry.visitDate} and ordered a {entry.drinkOrder}.
                     I gave it {entry.rating}/5 stars. {entry.review}
                     <br/><br/><br/>
                 </p>
