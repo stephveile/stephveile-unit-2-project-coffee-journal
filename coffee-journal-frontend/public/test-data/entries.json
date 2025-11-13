@@ -1,0 +1,38 @@
+[
+    {
+        "shopId": "1",
+        "drinkOrder": "Latte",
+        "rating": 4,
+        "review": "Delicious!",
+        "wouldRecommend": true,
+        "visitDate": "11/11/2025",
+        "userId": "1"
+    },
+    {
+        "shopId": "2",
+        "drinkOrder": "Iced Americano",
+        "rating": 3,
+        "review": "Needs some creamer, otherwise good.",
+        "wouldRecommend": false,
+        "visitDate": "11/09/2025",
+        "userId": "1"
+    },
+    {
+        "shopId": "1",
+        "drinkOrder": "Cortado",
+        "rating": 5,
+        "review": "I really liked the cortado. The vibe of this place is great! I will be coming back.",
+        "wouldRecommend": true,
+        "visitDate": "11/05/2025",
+        "userId": "3"
+    },
+    {
+        "shopId": "2",
+        "drinkOrder": "Triple Shot Oatmilk Brown Sugar Vanilla Latte",
+        "rating": 5,
+        "review": "This is the best thing I've ever tasted!",
+        "wouldRecommend": true,
+        "visitDate": "11/11/2025",
+        "userId": "2"
+    }
+]

@@ -1,0 +1,14 @@
+[
+    {
+        "shopName": "Blueprint Coffee",
+        "shopAddress": "123 Hampton Ave",
+        "shopPhone": "314-123-4567",
+        "shopHours": "S-S 8:00AM - 4:00PM"
+    },
+    {
+        "shopName": "Coffeestamp",
+        "shopAddress": "456 Jefferson Ave",
+        "shopPhone": "314-456-7890",
+        "shopHours": "M-F 6:00AM - 10:00AM, S&S 8:00AM - 12:00PM"
+    }
+]

@@ -1,0 +1,12 @@
+[
+    {
+        "userId": "1",
+        "newCity": "Kansas City",
+        "newShopName": "Kaldi Coffee"
+    },
+    {
+        "userId": "3",
+        "newCity": "",
+        "newShopName": "Cafe Dolce"
+    }
+]
