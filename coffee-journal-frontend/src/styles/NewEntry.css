@@ -51,12 +51,24 @@ textarea {
     resize: inherit;
 }
 
-input, textarea {
+input, textarea, select {
     padding: 10px;
     margin: 10px;
     border-radius: 10px;
     font-family: "Montserrat", sans-serif;
     font-size: medium;
+}
+
+.radiogroup {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.radiobuttons {
+    display: flex;
+    gap: 1px;
+    align-items: center;
 }
 
 .formButtons {

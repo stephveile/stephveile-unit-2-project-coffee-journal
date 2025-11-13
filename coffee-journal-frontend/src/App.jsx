@@ -7,7 +7,7 @@ import Home from './pages/Home';
 import NewEntry from './pages/NewEntry';
 import Journal from './pages/Journal';
 import About from './pages/About';
-
+import UpdateEntry from './pages/UpdateEntry';
 
 function App() {
 
@@ -20,6 +20,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/newentry" element={<NewEntry />} />
           <Route path="/journal" element={<Journal />} />
+          <Route path="/updateentry/:id" element={<UpdateEntry />} />
           <Route path="/about" element={<About />} />
         </Routes>
         <Footer />

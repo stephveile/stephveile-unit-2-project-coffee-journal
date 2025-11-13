@@ -34,6 +34,17 @@
     animation-duration: 5s;
 }
 
+button {
+    font-size: large;
+    font-weight: bold;
+    width: 100px;
+    border-radius: 10px;
+    font-family: "Montserrat", sans-serif;
+    font-size: medium;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 @keyframes fadeIn {
   from {background-color: rgba(0, 0, 0, 0.0);}
   to {background-color: rgba(0, 0, 0, 0.7);}
